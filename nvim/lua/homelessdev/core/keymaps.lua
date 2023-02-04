@@ -9,16 +9,12 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>`", ":terminal<CR>")
 keymap.set("t", "jk", "<C-\\><C-n>")
-
-keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap.set("n", "<leader>rs", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 keymap.set("n", "<leader>j", ":m .+1<CR>")
 keymap.set("n", "<leader>k", ":m .-2<CR>")
 keymap.set("v", "<leader>j", ":m '>+1<CR>gv=gv")
 keymap.set("v", "<leader>k", ":m '<-2<CR>gv=gv")
-
-keymap.set("v", "<Tab>", ">gv")
-keymap.set("v", "<S-Tab>", "<gv")
 
 keymap.set("n", "<leader>d", '"_d')
 keymap.set("v", "<leader>d", '"_d')
@@ -26,23 +22,18 @@ keymap.set("v", "<leader>d", '"_d')
 keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "<C-d>", "<C-d>zz")
 
--- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>")
-
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>") -- increment
-keymap.set("n", "<leader>-", "<C-x>") -- decrement
-
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
+keymap.set("n", "<leader>sj", "10<C-w>>")
+keymap.set("n", "<leader>sk", "10<C-w><")
 keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 
 keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
@@ -72,6 +63,3 @@ keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git 
 keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
 keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
-
--- restart lsp server
-keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
