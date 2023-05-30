@@ -22,6 +22,8 @@ keymap.set("v", "<leader>d", '"_d')
 keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "<C-d>", "<C-d>zz")
 
+keymap.set("n", "YY", "va{Vy")
+
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
