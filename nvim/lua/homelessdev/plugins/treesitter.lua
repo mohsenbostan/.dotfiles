@@ -4,6 +4,11 @@ if not status then
 	return
 end
 
+local status, treesitter_context = pcall(require, "treesitter-context")
+if not status then
+	return
+end
+
 -- configure treesitter
 treesitter.setup({
 	-- enable syntax highlighting
@@ -37,3 +42,11 @@ treesitter.setup({
 	-- auto install above language parsers
 	auto_install = true,
 })
+
+treesitter_context.setup({
+	enable = true,
+})
+
+vim.keymap.set("n", "[c", function()
+	require("treesitter-context").go_to_context()
+end, { silent = true })

@@ -95,6 +95,8 @@ return packer.startup(function(use)
 		end,
 	})
 
+	use("nvim-treesitter/nvim-treesitter-context")
+
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
 	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
@@ -118,6 +120,8 @@ return packer.startup(function(use)
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")
+
+	use("ThePrimeagen/harpoon")
 
 	if packer_bootstrap then
 		require("packer").sync()
