@@ -33,8 +33,6 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-	-- use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
-
 	use("folke/tokyonight.nvim")
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
@@ -104,9 +102,6 @@ return packer.startup(function(use)
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
-	-- ufo (folding)
-	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
-
 	use({
 		"themaxmarchuk/tailwindcss-colors.nvim",
 		module = "tailwindcss-colors",
@@ -117,9 +112,6 @@ return packer.startup(function(use)
 	})
 
 	use("simrat39/rust-tools.nvim")
-
-	-- Debugging
-	use("mfussenegger/nvim-dap")
 
 	use("ThePrimeagen/harpoon")
 
