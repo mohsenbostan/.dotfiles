@@ -115,6 +115,8 @@ return packer.startup(function(use)
 
 	use("ThePrimeagen/harpoon")
 
+	use("github/copilot.vim")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
