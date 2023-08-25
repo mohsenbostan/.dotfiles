@@ -117,6 +117,9 @@ return packer.startup(function(use)
 
 	use("github/copilot.vim")
 
+  -- ufo (folding)
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
