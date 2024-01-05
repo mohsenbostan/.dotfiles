@@ -117,8 +117,26 @@ return packer.startup(function(use)
 
 	use("github/copilot.vim")
 
-  -- ufo (folding)
+	use("tpope/vim-fugitive")
+
+	-- ufo (folding)
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+
+	use({
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		config = function()
+			require("fidget").setup()
+		end,
+	})
+
+	use({
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()
