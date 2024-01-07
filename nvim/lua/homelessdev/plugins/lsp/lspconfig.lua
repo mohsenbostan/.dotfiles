@@ -28,21 +28,60 @@ local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-	keymap.set("n", "gD", vim.lsp.buf.declaration(), opts) -- got to declaration
-	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
-	keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
-	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-	keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", vim.lsp.bug.hover, opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-	keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
-	keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+	keymap.set("n", "gD", function()
+		vim.lsp.buf.declaration()
+	end, opts)
+
+	keymap.set("n", "gd", function()
+		vim.lsp.buf.definition()
+	end, opts)
+
+	keymap.set("n", "gi", function()
+		vim.lsp.buf.implementation()
+	end, opts)
+
+	keymap.set({ "n", "v" }, "<leader>ca", function()
+		vim.lsp.buf.code_action()
+	end, opts)
+
+	keymap.set("n", "<leader>rn", function()
+		vim.lsp.buf.rename()
+	end, opts)
+
+	keymap.set("n", "K", function()
+		vim.lsp.buf.hover()
+	end, opts)
+
+	keymap.set("n", "<leader>f", function()
+		vim.lsp.buf.format()
+	end, opts)
+
+	-- Diagnostics
+	vim.diagnostic.config({
+		virtual_text = true,
+		underline = true,
+		signs = true,
+		update_in_insert = true,
+		float = {
+			source = "always",
+		},
+	})
+
+	keymap.set("n", "<leader>d", function()
+		vim.diagnostic.open_float()
+	end, opts)
+
+	keymap.set("i", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
+
+	keymap.set("n", "[d", function()
+		vim.diagnostic.goto_prev()
+	end, opts)
+
+	keymap.set("n", "]d", function()
+		vim.diagnostic.goto_next()
+	end, opts)
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "tsserver" then
